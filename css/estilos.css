@@ -1,0 +1,526 @@
+/* ==========================================================================
+   EL BAÚL DEL LIBRO — Hoja de estilos
+   Maquetación 100% fluida (clamp/min/max/calc), sin Flexbox, sin CSS Grid,
+   sin @media, sin JavaScript. Solo flujo normal de caja: block / inline-block / table.
+   ========================================================================== */
+
+/* -------------------- 1. Variables de marca -------------------- */
+:root {
+  /* Nueva Paleta "El Baúl del Libro" */
+  --color-principal: #3B2319;         /* Madera Noble (Marrón oscuro profundo) */
+  --color-secundario: #9E472A;        /* Cuero Vintage (Terracota) */
+  --color-acento: #C89D51;            /* Dorado Antiguo (Bronce / Oro viejo) */
+  --color-fondo: #F7F3EC;             /* Papel Pergamino (Crema marfil cálido) */
+  --color-fondo-secundario: #EFE8DC;  /* Pergamino Suave (Fondo alternativo/Tarjetas) */
+  --color-texto: #22201D;             /* Tinta de Imprenta (Negro carbón suave) */
+  --color-texto-secundario: #5C554E;   /* Tinta Atenuada (Marrón grisáceo suave) */
+  --color-borde: #D9CEBC;             /* Línea de libro/Borde sepia claro */
+  --color-exito: #3E7D55;             /* Verde Bosque */
+  --color-alerta: #B84242;            /* Rojo Rubí / Alerta */
+
+  --fuente-titulos: "Fraunces", "Georgia", serif;
+  --fuente-texto: "Source Sans 3", "Segoe UI", sans-serif;
+
+  --espacio-lateral: clamp(1.25rem, 5vw, 5rem);
+  --ancho-lectura: 68ch;
+}
+
+/* -------------------- 2. Reinicio y base -------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
+
+a {
+  color: var(--color-secundario);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.15em;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-principal);
+}
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 3px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fuente-titulos);
+  color: var(--color-principal);
+  line-height: 1.15;
+  margin-top: 0;
+}
+
+h1 { font-size: clamp(2.1rem, 1.4rem + 3.2vw, 4rem); }
+h2 { font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.4rem); }
+h3 { font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.5rem); }
+
+p {
+  max-width: var(--ancho-lectura);
+}
+
+mark {
+  background-color: var(--color-acento);
+  color: var(--color-principal);
+  padding: 0.05em 0.35em;
+  border-radius: 0.2em;
+}
+
+abbr {
+  cursor: help;
+  text-decoration-style: dotted;
+}
+
+/* -------------------- 3. Utilidades de sección -------------------- */
+.contenedor {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 4vw, 4.5rem) var(--espacio-lateral);
+}
+
+.seccion-alterna {
+  background-color: var(--color-fondo-secundario);
+}
+
+.introduccion-seccion {
+  max-width: 62ch;
+  color: var(--color-texto-secundario);
+}
+
+/* -------------------- 4. Encabezado y navegación -------------------- */
+.encabezado-sitio {
+  background-color: var(--color-principal);
+  border-bottom: 0.3rem solid var(--color-acento);
+}
+
+.barra-encabezado {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(0.75rem, 2vw, 1.25rem) var(--espacio-lateral);
+  /* flujo normal: el logo y el nav son inline-block y se acomodan solos */
+  text-align: center;
+}
+
+.enlace-logo {
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  margin-right: clamp(1rem, 4vw, 3rem);
+}
+
+.enlace-logo img {
+  display: inline-block;
+  vertical-align: middle;
+  width: clamp(2.4rem, 3vw, 3.2rem);
+  height: auto;
+  margin-right: 0.6rem;
+}
+
+.nombre-sitio {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: var(--fuente-titulos);
+  color: var(--color-fondo);
+  font-size: clamp(1.1rem, 1rem + 0.6vw, 1.5rem);
+  letter-spacing: 0.01em;
+}
+
+.nav-principal {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nav-principal ul {
+  list-style: none;
+  margin: 0.4rem 0 0 0;
+  padding: 0;
+}
+
+.nav-principal li {
+  display: inline-block;
+  margin: 0.15rem clamp(0.4rem, 1.6vw, 1.1rem);
+}
+
+.nav-principal a {
+  color: var(--color-fondo-secundario);
+  text-decoration: none;
+  font-size: clamp(0.85rem, 0.8rem + 0.3vw, 1rem);
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-principal a:hover,
+.nav-principal a:focus-visible {
+  color: var(--color-fondo);
+  border-bottom-color: var(--color-acento);
+}
+
+/* -------------------- 5. Héroe (portada) -------------------- */
+.heroe {
+  background-image: linear-gradient(160deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+  color: var(--color-fondo);
+  text-align: center;
+}
+
+.heroe h1 {
+  color: var(--color-fondo);
+  max-width: 18ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eslogan {
+  font-family: var(--fuente-titulos);
+  font-style: italic;
+  color: var(--color-acento);
+  font-size: clamp(1.15rem, 1rem + 0.8vw, 1.6rem);
+  margin-top: 0.4rem;
+}
+
+.heroe p.descripcion-heroe {
+  max-width: 58ch;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--color-fondo-secundario);
+}
+
+/* -------------------- 6. Botones (enlaces con apariencia de botón) -------------------- */
+.boton {
+  display: inline-block;
+  margin: 0.6rem 0.5rem;
+  padding: 0.75em 1.6em;
+  border: 2px solid var(--color-acento);
+  border-radius: 0.3rem;
+  background-color: var(--color-acento);
+  color: var(--color-principal);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.boton:hover,
+.boton:focus-visible {
+  background-color: transparent;
+  color: var(--color-acento);
+}
+
+.boton-secundario {
+  background-color: transparent;
+  color: var(--color-fondo);
+  border-color: var(--color-fondo);
+}
+
+.boton-secundario:hover,
+.boton-secundario:focus-visible {
+  background-color: var(--color-fondo);
+  color: var(--color-principal);
+}
+
+/* -------------------- 7. Sección "Nosotros" -------------------- */
+.bloque-nosotros {
+  /* dos columnas fluidas por medio de inline-block + clamp, sin flexbox */
+  font-size: 0; /* elimina el espacio en blanco entre inline-block */
+}
+
+.bloque-nosotros > * {
+  font-size: 1rem; /* se restaura el tamaño de fuente en los hijos */
+}
+
+.texto-nosotros,
+.imagen-nosotros {
+  display: inline-block;
+  vertical-align: top;
+  width: clamp(260px, 48%, 640px);
+  padding: 0.5rem;
+}
+
+.imagen-nosotros img {
+  border: 0.4rem solid var(--color-fondo);
+  box-shadow: 0 0 0 1px var(--color-borde);
+}
+
+.imagen-nosotros figcaption {
+  color: var(--color-texto-secundario);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.dato-curioso {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1rem, 2vw, 1.75rem);
+  background-color: var(--color-fondo-secundario);
+  border-left: 0.35rem solid var(--color-acento);
+}
+
+.dato-curioso h3 {
+  margin-bottom: 0.4rem;
+}
+
+/* -------------------- 8. Tarjetas de categorías -------------------- */
+.lista-categorias {
+  font-size: 0;
+  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0 0;
+}
+
+.tarjeta-categoria {
+  font-size: 1rem;
+  display: inline-block;
+  vertical-align: top;
+  width: clamp(150px, calc(20% - 1rem), 220px);
+  margin: 0 1rem 1.25rem 0;
+  padding: clamp(1rem, 1.6vw, 1.4rem);
+  background-color: var(--color-fondo-secundario);
+  border-top: 0.3rem solid var(--color-secundario);
+}
+
+.tarjeta-categoria h3 {
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem);
+}
+
+.subcategorias {
+  margin: clamp(2rem, 3vw, 3rem) 0 0 0;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+}
+
+.subcategorias dt {
+  font-family: var(--fuente-titulos);
+  color: var(--color-principal);
+  font-weight: 700;
+  margin-top: 0.75rem;
+}
+
+.subcategorias dd {
+  display: inline-block;
+  margin: 0.3rem 0.6rem 0.3rem 0;
+  padding: 0.2em 0.7em;
+  background-color: var(--color-fondo-secundario);
+  color: var(--color-texto);
+  font-size: 0.9rem;
+  border-radius: 1rem;
+}
+
+/* -------------------- 9. Libros destacados -------------------- */
+.lista-libros {
+  font-size: 0;
+  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0 0;
+}
+
+.tarjeta-libro {
+  font-size: 1rem;
+  display: inline-block;
+  vertical-align: top;
+  width: clamp(170px, calc(25% - 1.2rem), 260px);
+  margin: 0 1.2rem 1.6rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.tarjeta-libro h3 {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+  min-height: 2.6em;
+}
+
+.categoria-libro {
+  color: var(--color-texto-secundario);
+  font-size: 0.85rem;
+  margin: 0.2rem 0;
+}
+
+.precio-libro {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--color-secundario);
+  font-size: 1.05rem;
+}
+
+/* -------------------- 10. Servicios y preguntas frecuentes -------------------- */
+details {
+  background-color: var(--color-fondo-secundario);
+  border: 1px solid var(--color-borde);
+  border-left: 0.35rem solid var(--color-secundario);
+  padding: clamp(0.85rem, 1.6vw, 1.25rem) clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: 1rem;
+}
+
+summary {
+  cursor: pointer;
+  font-family: var(--fuente-titulos);
+  color: var(--color-principal);
+  font-size: clamp(1.02rem, 1rem + 0.2vw, 1.2rem);
+  font-weight: 700;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  position: absolute;
+  right: 0.1rem;
+  top: 0;
+  color: var(--color-acento);
+  font-size: 1.3em;
+  line-height: 1;
+}
+
+details[open] summary::after {
+  content: "\2212";
+}
+
+details[open] summary {
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: 0.6rem;
+}
+
+/* -------------------- 11. Testimonios -------------------- */
+.lista-testimonios {
+  font-size: 0;
+}
+
+.testimonio {
+  font-size: 1rem;
+  display: inline-block;
+  vertical-align: top;
+  width: clamp(260px, calc(50% - 1.5rem), 520px);
+  margin: 0 1.5rem 1.5rem 0;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+}
+
+.testimonio blockquote {
+  margin: 0.5rem 0 0.75rem 0;
+  padding: 0;
+  border: 0;
+  font-style: italic;
+}
+
+.calificacion {
+  color: var(--color-acento);
+  letter-spacing: 0.15em;
+}
+
+.testimonio footer {
+  color: var(--color-texto-secundario);
+  font-size: 0.9rem;
+}
+
+/* -------------------- 12. Contacto -------------------- */
+.bloque-contacto {
+  font-size: 0;
+}
+
+.bloque-contacto > * {
+  font-size: 1rem;
+}
+
+.datos-contacto,
+.horario-contacto {
+  display: inline-block;
+  vertical-align: top;
+  width: clamp(260px, 48%, 620px);
+  padding: 0.5rem;
+}
+
+address {
+  font-style: normal;
+}
+
+address p {
+  margin: 0.35rem 0;
+}
+
+table {
+  width: 100%;
+  max-width: 480px;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+}
+
+caption {
+  text-align: left;
+  font-family: var(--fuente-titulos);
+  color: var(--color-principal);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.55em 0.7em;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+th {
+  background-color: var(--color-principal);
+  color: var(--color-fondo);
+  font-weight: 700;
+}
+
+.fila-cerrado td {
+  color: var(--color-alerta);
+  font-weight: 700;
+}
+
+.redes-sociales {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.redes-sociales a {
+  display: inline-block;
+  margin: 0.3rem 0.8rem 0.3rem 0;
+  padding: 0.5em 1em;
+  border: 1px solid var(--color-secundario);
+  text-decoration: none;
+}
+
+.redes-sociales a:hover,
+.redes-sociales a:focus-visible {
+  background-color: var(--color-secundario);
+  color: var(--color-fondo);
+}
+
+/* -------------------- 13. Pie de página -------------------- */
+.pie-sitio {
+  background-color: var(--color-principal);
+  color: var(--color-fondo-secundario);
+  text-align: center;
+}
+
+.pie-sitio a {
+  color: var(--color-acento);
+}
+
+.pie-sitio p {
+  max-width: none;
+  margin: 0.35rem auto;
+  font-size: 0.9rem;
+}
